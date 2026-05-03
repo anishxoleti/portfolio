@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anish Oleti | Portfolio</title>
+    <meta name="description" content="Computer Science student building data-driven applications focused on real-world insights and results.">
+    <meta name="author" content="Anish Oleti">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .screenshot-gallery { margin-top: 2rem; }
+        .screenshot-gallery-label { font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:1rem; }
+        .screenshot-tabs { display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap; }
+        .screenshot-tab { padding:.35rem .85rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:100px;font-size:.75rem;cursor:pointer;color:#888;transition:all 200ms ease;white-space:nowrap; }
+        .screenshot-tab.active,.screenshot-tab:hover { background:rgba(255,77,0,.15);border-color:#ff4d00;color:#fff; }
+        .screenshot-frame { border-radius:12px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.08); }
+        .screenshot-frame img { width:100%;display:block; }
+        #project-nba .screenshot-frame img { max-height:420px;object-fit:contain;background:#0a0e1a; }
+        #project-ai-bias .screenshot-frame img { max-height:380px;object-fit:contain;background:#0f1117; }
+        .screenshot-caption { padding:.85rem 1rem;background:#111;border-top:1px solid rgba(255,255,255,.06); }
+        .screenshot-caption-title { font-size:.8rem;font-weight:600;color:#fff;margin-bottom:.2rem; }
+        .screenshot-caption-desc { font-size:.75rem;color:#888;line-height:1.5; }
+        .screenshot-placeholder { aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#111;color:#555;font-size:.85rem;gap:.5rem; }
+        .project-links { display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem; }
+        .project-link { display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;border:1px solid rgba(255,255,255,.15);border-radius:6px;font-size:.8rem;color:#888;transition:all 200ms ease; }
+        .project-link:hover { border-color:#fff;color:#fff; }
+        .project-link.coming-soon { opacity:.45;cursor:default;pointer-events:none; }
+        .status-badge { display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;padding:.25rem .65rem;border-radius:100px;margin-bottom:1rem; }
+        .status-badge.live { background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#22c55e; }
+        .status-badge-dot { width:6px;height:6px;border-radius:50%;background:currentColor; }
+        .status-badge.in-progress .status-badge-dot { animation:gentleBlink 2.5s ease-in-out infinite; }
+        .status-badge.live .status-badge-dot { animation:gentleBlink 2s ease-in-out infinite; }
+        @keyframes gentleBlink { 0%,100%{opacity:1}50%{opacity:.2} }
+
+        /* About */
+        .about { min-height:auto!important;padding-top:3rem!important;padding-bottom:3rem!important; }
+        .about-grid.no-image { grid-template-columns:1fr!important;max-width:720px; }
+        .about .section-label { font-size:1.1rem;font-weight:600;color:#fff;letter-spacing:0;text-transform:none;margin-bottom:1.5rem;display:block;text-align:center; }
+
+
+        /* Skills */
+        .skills { padding-top:3rem;padding-bottom:4rem; }
+        .skills .section-label { font-size:1.1rem;font-weight:600;color:#fff;letter-spacing:0;text-transform:none;display:block;text-align:center;margin-bottom:0; }
+        .skills-grid { justify-items:center; }
+        .skill-category { text-align:center; }
+        .skill-category h3 { text-align:center; }
+
+        .hero-greeting { font-size:1.15rem!important; }
+        .detail-block li { padding-left:1.25rem;position:relative;margin-bottom:.35rem;line-height:1.65;color:rgba(255,255,255,.85); }
+        .detail-block li::before { content:'→';position:absolute;left:0;color:#ff4d00; }
+
+        /* Video */
+        .video-container { border-radius:12px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.08);margin-bottom:1.5rem; }
+        .video-container video { width:100%;display:block; }
+    .screenshot-frame img {
+    cursor: zoom-in;
+}
+.img-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+}
+.img-overlay.active {
+    display: flex;
+}
+.img-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <a href="#home" class="nav-logo">home</a>
+    <div class="nav-links">
+        <a href="#projects">projects</a>
+        <a href="#about">about</a>
+        <a href="#contact">contact</a>
+    </div>
+    <div class="available-badge blinking">
+        <span class="badge-dot"></span>
+        <span>open to work</span>
+    </div>
+</nav>
+
+<main>
+    <section id="home" class="hero">
+        <p class="hero-greeting">Hey, I'm <span class="highlight">Anish Oleti</span></p>
+        <h1 class="hero-headline">
+            Computer Science student building data-driven applications focused on real-world
+            <span class="rotating-text" data-words="insights,results,impact,analysis,solutions">insights</span>
+        </h1>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <div class="scroll-circle"></div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <a href="#project-nba" class="project-card" style="--card-color:#ff4d00;">
+            <div class="card-header"><span class="card-year">2026</span><span class="card-label">Personal Project</span></div>
+            <div class="card-content">
+                <h2 class="card-title">NBA Player Analytics & Market Intelligence App</h2>
+                <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+            <div class="card-bg"></div>
+        </a>
+        <a href="#project-ai-bias" class="project-card" style="--card-color:#ffffff;--card-text:#1a1a2e;">
+            <div class="card-header"><span class="card-year">2026</span><span class="card-label">Personal Project</span></div>
+            <div class="card-content">
+                <h2 class="card-title">AI News Bias & Misinformation Detector</h2>
+                <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+            <div class="card-bg"></div>
+        </a>
+        <a href="#project-seo" class="project-card" style="--card-color:#6366f1;">
+            <div class="card-header"><span class="card-year">2026</span><span class="card-label">Personal Project</span></div>
+            <div class="card-content">
+                <h2 class="card-title">SEO Content Prioritization Engine</h2>
+                <div class="card-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+            </div>
+            <div class="card-bg"></div>
+        </a>
+    </section>
+
+    <section class="project-details">
+
+        <!-- NBA -->
+        <article id="project-nba" class="project-detail">
+            <div class="detail-grid">
+                <div class="detail-info">
+                    <div class="status-badge in-progress">
+                        <span class="status-badge-dot"></span>
+                        App being polished — deployment coming soon
+                    </div>
+                    <h2 class="detail-title">NBA Player Analytics & Market Intelligence App</h2>
+                    <div class="detail-block">
+                        <h3>Problem</h3>
+                        <p>Sports bettors and fantasy players have no single place to cross-reference a player's recent performance trends with live prop line movement across sportsbooks. Getting a complete picture requires multiple tabs, multiple sites, and no real way to connect the data.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Solution</h3>
+                        <p>A full stack mobile app that pulls live NBA player stats, visualizes performance trends across the last 30 to 40 games, and surfaces real-time prop odds from DraftKings, FanDuel, and Bovada all in one place. A background worker keeps lines fresh every 60 seconds and alerts users when movement hits a defined threshold.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Searchable player database with interactive stat charts and filters for stat type, game range, location, opponent, rest, and game margin</li>
+                            <li>Live market screen comparing prop odds across DraftKings, FanDuel, Caesars, ESPNBet, and Bovada with implied probability and expected value</li>
+                            <li>Line movement tracker showing opening line vs current line with directional indicators</li>
+                            <li>Background worker refreshing lines every 60 seconds with updates stored in PostgreSQL</li>
+                            <li>Tracked players tab showing active alerts with sportsbook and line details</li>
+                            <li>LLM-powered AI Analysis tab for natural language stat queries</li>
+                            <li>Game matchup screen showing likely starters per team pulled from home screen cards</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Challenges</h3>
+                        <ul>
+                            <li>Normalizing data across multiple external APIs into a consistent internal schema</li>
+                            <li>Managing API rate limits on the BallDontLie free tier during playoffs when game volume spikes</li>
+                            <li>Building a caching layer to serve prop data without hammering external endpoints on every request</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Future Goals</h3>
+                        <ul>
+                            <li>Deploy the app publicly so anyone can access it without running it locally</li>
+                            <li>Add push notifications for line movement alerts so users don't have to have the app open</li>
+                            <li>Expand the AI Analysis tab to support more complex multi-player comparison queries</li>
+                            <li>Integrate injury reports and player news so market context is available alongside the odds</li>
+                            <li>Add historical line movement data so users can see how lines have moved over the full day</li>
+                            <li>Evolve the AI Analysis tab into a full AI agent that autonomously monitors player trends, detects sharp line movement, and surfaces actionable alerts without the user needing to ask</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Tech Stack</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">BallDontLie API</span>
+                            <span class="tech-tag">REST APIs</span>
+                            <span class="tech-tag">Expo</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/anishxoleti/sports-analytics-platform" target="_blank" class="project-link">↗ GitHub</a>
+                        <span class="project-link coming-soon">⏳ Deployment coming soon</span>
+                    </div>
+                </div>
+
+                <div class="detail-media">
+                    <!-- Video demo -->
+                    <p class="screenshot-gallery-label" style="margin-bottom:.75rem;">Video Demo</p>
+                    <div class="video-container" style="margin-bottom:1.5rem;">
+                        <video controls style="width:100%;display:block;max-height:500px;object-fit:contain;background:#000;">
+                            <source src="nba_demo.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <!-- Screenshot gallery -->
+                    <div class="screenshot-gallery">
+                        <p class="screenshot-gallery-label">App Screens</p>
+                        <div class="screenshot-tabs" id="nba-tabs">
+                            <button class="screenshot-tab active" onclick="showScreen('nba',0,this)">Home</button>
+                            <button class="screenshot-tab" onclick="showScreen('nba',1,this)">Matchup</button>
+                            <button class="screenshot-tab" onclick="showScreen('nba',2,this)">Player Stats</button>
+                            <button class="screenshot-tab" onclick="showScreen('nba',3,this)">Stat Chart</button>
+                            <button class="screenshot-tab" onclick="showScreen('nba',4,this)">Market Odds</button>
+                            <button class="screenshot-tab" onclick="showScreen('nba',5,this)">Tracked</button>
+                            <button class="screenshot-tab" onclick="showScreen('nba',6,this)">AI Analysis</button>
+                        </div>
+                        <div class="screenshot-frame" id="nba-frame">
+                            <img src="nba_home.PNG" alt="Home Screen" />
+                            <div class="screenshot-caption">
+                                <div class="screenshot-caption-title">Home — Explore Players</div>
+                                <div class="screenshot-caption-desc">Search any NBA player by name. Today's game matchup cards show both teams and tip-off time. Tap a game to see likely starters.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- AI BIAS -->
+        <article id="project-ai-bias" class="project-detail">
+            <div class="detail-grid">
+                <div class="detail-info">
+                    <div class="status-badge live">
+                        <span class="status-badge-dot"></span>
+                        Live — AI feature set still expanding
+                    </div>
+                    <h2 class="detail-title">AI News Bias & Misinformation Detector</h2>
+                    <div class="detail-block">
+                        <h3>Problem</h3>
+                        <p>Most people can't easily tell whether the news they're reading is politically slanted or using emotionally charged language to push a narrative. Tools that do this exist but they rate entire outlets rather than individual articles and none are automated in real time.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Solution</h3>
+                        <p>A web app where you paste any article URL or text and get back a structured analysis in seconds. Political bias rating, sentiment score, misinformation risk, and a breakdown of loaded language. Built a multi-layer pipeline combining an LLM classification layer with a locally-run HuggingFace transformer and a rule-based distortion analyzer so the system produces independent signals rather than relying on a single model call.</p>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Paste any URL and the scraper pulls article text automatically via BeautifulSoup</li>
+                            <li>Political bias scored on a -5 to +5 scale with plain English context for each rating</li>
+                            <li>Dual sentiment analysis using Groq/Llama and HuggingFace RoBERTa blended at 50/50</li>
+                            <li>Rule-based distortion analyzer flags loaded words, emotional punctuation, and caps ratio independent of the AI</li>
+                            <li>Blended risk score combining AI misinformation output and rule-based distortion at 60/40 weighting</li>
+                            <li>Article comparison engine measuring narrative divergence between two sources on the same topic</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Challenges</h3>
+                        <ul>
+                            <li>Avoiding a pure AI wrapper by building independent rule-based scoring that runs without any model call</li>
+                            <li>HuggingFace memory limits on the free deployment tier required a graceful fallback when torch is unavailable</li>
+                            <li>Getting consistent structured JSON output from the LLM across varied article formats and lengths</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Future Goals</h3>
+                        <ul>
+                            <li>Fine-tune a Hugging Face classifier on a labeled bias dataset to replace or supplement the LLM call</li>
+                            <li>Build a dashboard showing average bias scores across sources analyzed over time</li>
+                            <li>Add a side-by-side comparison view for two articles on the same topic</li>
+                            <li>Scale the dataset to 500 or more labeled articles to support model training and evaluation</li>
+                            <li>Add a NewsAPI integration to automatically pull and analyze articles on a schedule</li>
+                            <li>Evolve the system into a fully autonomous AI agent that monitors news sources on its own, flags high-risk content, and delivers structured reports without any user input</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Tech Stack</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Groq API</span>
+                            <span class="tech-tag">Llama 3.3</span>
+                            <span class="tech-tag">HuggingFace Transformers</span>
+                            <span class="tech-tag">RoBERTa</span>
+                            <span class="tech-tag">BeautifulSoup</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">Render</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/anishxoleti/News-Bias-Analyzer" target="_blank" class="project-link">↗ GitHub</a>
+                        <a href="https://news-bias-analyzer-yj2y.onrender.com/" target="_blank" class="project-link">↗ Live Site</a>
+                    </div>
+                </div>
+                <div class="detail-media">
+                    <div class="screenshot-gallery">
+                        <p class="screenshot-gallery-label">Screenshots</p>
+                        <div class="screenshot-tabs" id="ai-tabs">
+                            <button class="screenshot-tab active" onclick="showScreen('ai',0,this)">CNN Input</button>
+                            <button class="screenshot-tab" onclick="showScreen('ai',1,this)">CNN Result</button>
+                            <button class="screenshot-tab" onclick="showScreen('ai',2,this)">MSN Input</button>
+                            <button class="screenshot-tab" onclick="showScreen('ai',3,this)">MSN Result</button>
+                        </div>
+                        <div class="screenshot-frame" id="ai-frame">
+                            <img src="demonews1.png" alt="CNN Input" />
+                            <div class="screenshot-caption">
+                                <div class="screenshot-caption-title">CNN Input</div>
+                                <div class="screenshot-caption-desc">A CNN article on a Secret Service shooting pasted via URL. The scraper fetches and populates the article text automatically.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- SEO -->
+        <!-- SEO -->
+        <article id="project-seo" class="project-detail">
+            <div class="detail-grid">
+                <div class="detail-info">
+                    <div class="status-badge in-progress">
+                        <span class="status-badge-dot"></span>
+                        Early development — actively building
+                    </div>
+                    <h2 class="detail-title">SEO Content Prioritization Engine</h2>
+                    <div class="detail-block">
+                        <h3>Problem</h3>
+                        <p>SEO teams spend hours manually reviewing pages to decide what to fix first. There is no systematic way to weigh internal link structure, keyword coverage, and page importance together. Most decisions come down to gut feel or whoever is loudest in the room.</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h3>Solution</h3>
+                        <p>A Python system that models a website as a directed graph, scores every page by structural importance and keyword relevance, and uses a priority engine to surface the highest impact pages to improve first. Still in early development with the core data structures being built out and tested on sample data before moving to real site inputs.</p>
+                    </div>
+
+                    <div class="detail-block">
+                        <h3>What's Built So Far</h3>
+                        <ul>
+                            <li>Basic directed graph structure where pages are nodes and internal links are edges</li>
+                            <li>Early implementation of a PageRank style scoring approach that is still being refined</li>
+                            <li>Keyword indexing using hash maps to track which pages cover which terms</li>
+                            <li>Experimenting with a heap based approach to rank pages by priority</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-block">
+                        <h3>What's Left</h3>
+                        <ul>
+                            <li>Finishing and validating the PageRank scoring so importance scores are accurate across different graph structures</li>
+                            <li>Building out the priority engine fully and tuning the weighting between link structure and keyword relevance</li>
+                            <li>Web crawler to ingest real websites automatically instead of manually structured sample data</li>
+                            <li>Google Search Console integration to use real search impression and click data instead of manually tagged keywords</li>
+                            <li>Output layer to generate a usable report rather than just printing to terminal</li>
+                            <li>Testing against real sites to validate the scoring produces meaningful recommendations</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-block">
+                        <h3>Challenges</h3>
+                        <ul>
+                            <li>Balancing multiple signals into a single priority score without any one factor dominating the result</li>
+                            <li>Handling circular link structures in the graph without importance scores diverging during iteration</li>
+                            <li>Defining what a meaningful content gap actually is versus a page that just has not been optimized yet</li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-block">
+                        <h3>Future Goals</h3>
+                        <ul>
+                            <li>Build a web crawler to ingest real websites instead of manually structured JSON input</li>
+                            <li>Integrate Google Search Console data to incorporate real search impression and click data into scoring</li>
+                            <li>Add competitor gap analysis by crawling competing sites and comparing keyword coverage side by side</li>
+                            <li>Build a Flask web interface so non technical users can run audits without touching the command line</li>
+                            <li>Generate a full audit report as a PDF with prioritized recommendations and estimated impact per page</li>
+                            <li>Add semantic keyword clustering using embeddings so pages targeting similar topics get grouped automatically</li>
+                            <li>Evolve into a scheduled agent that re crawls the site weekly and tracks improvement over time</li>
+                            <li>Support multi site analysis so agencies can run audits across multiple client domains from one tool</li>
+                        </ul>
+                    </div>
+                    <div class="detail-block">
+                        <h3>Tech Stack</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Graph Algorithms</span>
+                            <span class="tech-tag">Hash Maps</span>
+                            <span class="tech-tag">Heaps</span>
+                            <span class="tech-tag">PageRank</span>
+                            <span class="tech-tag">Data Structures</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-media">
+                    <div class="placeholder-media">
+                        <p>Demo in progress</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+        <div class="about-grid no-image">
+            <div class="about-content">
+                <span class="section-label">About Me</span>
+                <p class="about-text">
+                    I'm a Computer Science student at FIU focused on building data-driven applications. I've worked on projects ranging from a full stack NBA analytics mobile app to an AI-powered news bias detector, combining APIs, machine learning, and my own logic to build things that actually do something useful. I mainly work in Python, JavaScript, and TypeScript, and I'm always learning by shipping.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills">
+        <span class="section-label">Skills</span>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>TypeScript</li>
+                    <li>SQL</li>
+                    <li>HTML / CSS</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Frameworks & Libraries</h3>
+                <ul>
+                    <li>React Native</li>
+                    <li>Node.js</li>
+                    <li>Express</li>
+                    <li>Flask</li>
+                    <li>HuggingFace Transformers</li>
+                    <li>Pandas / NumPy</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Tools & Databases</h3>
+                <ul>
+                    <li>PostgreSQL</li>
+                    <li>Git</li>
+                    <li>AWS (EC2, S3)</li>
+                    <li>Expo</li>
+                    <li>Render</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>Concepts</h3>
+                <ul>
+                    <li>NLP & Text Classification</li>
+                    <li>REST API Integration</li>
+                    <li>Data Structures & Algorithms</li>
+                    <li>LLM Integration</li>
+                    <li>Data Pipelines</li>
+                    <li>System Design</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <p class="contact-text">
+                Seeking opportunities in software engineering and data-driven development. Happy to connect.
+            </p>
+            <a href="mailto:anishxoleti@gmail.com" class="contact-btn">
+                contact me
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/anishxoleti" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/anish-oleti" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</main>
+
+<script src="script.js"></script>
+<script>
+    const screens = {
+        nba: [
+            { title:"Home — Explore Players", desc:"Search any NBA player by name. Today's game matchup cards show both teams and tip-off time. Tap a game to see likely starters.", img:"nba_home.PNG" },
+            { title:"Game Matchup — Likely Starters", desc:"Tap any game card to see likely starters for both teams with avatar initials. Tap a player to jump straight into their stats.", img:"nba_matchup.PNG" },
+            { title:"Player Stats — Cade Cunningham", desc:"Filter by stat type (Points, Assists, Rebounds), game range (Season, Last 10, Last 5), location (Home/Away), opponent, rest days, and game margin. All filters update the chart in real time.", img:"nba_stats.PNG" },
+            { title:"Stat Chart — Hit Rate", desc:"Interactive bar chart showing performance per game against the current prop line. Green bars are hits, red are misses. Hit rate shown above the chart.", img:"nba_chart.PNG" },
+            { title:"Market Odds — Live Props", desc:"Live prop odds across DraftKings, FanDuel, Caesars, ESPNBet, and Bovada. Best available line highlighted in green. Shows market consensus, line movement, fair odds, and expected value.", img:"nba_market.PNG" },
+            { title:"Tracked Players", desc:"Players you've added alerts for showing the stat, line, and sportsbook. Tap the trash icon to remove. Empty state shown when no players are tracked.", img:"nba_tracked.PNG" },
+            { title:"AI Analysis", desc:"Ask any stat question in plain English. Here: Jokic rebounds at home — returns average of 12.7 across 72 games with a clean result card.", img:"nba_ai.PNG" }
+        ],
+        ai: [
+            { title:"CNN Input", desc:"A CNN article on a Secret Service shooting pasted via URL. The scraper fetches and populates the article text automatically.", img:"demonews1.png" },
+            { title:"CNN Result", desc:"Rated Center-Right with neutral sentiment and low misinformation risk. The words attack, blast, and lie were flagged by the rule-based distortion analyzer producing a blended risk score of 3.6.", img:"newsbias2.png" },
+            { title:"MSN Input", desc:"An MSN article on Anthropic detecting strategic manipulation in Claude. URL scraped automatically with article text populated into the input field.", img:"newsbias3.png" },
+            { title:"MSN Result", desc:"Rated Center with a blended risk score of 1.8 — clean, balanced reporting. The word lie flagged by the rule-based analyzer even though AI rated misinformation at 2/10, showing both layers working independently.", img:"newsbias4.png" }
+        ]
+    };
+
+    function showScreen(project, index, btn) {
+        const data = screens[project][index];
+        const frame = document.getElementById(project + '-frame');
+        const tabs = document.getElementById(project + '-tabs');
+        tabs.querySelectorAll('.screenshot-tab').forEach(function(t){ t.classList.remove('active'); });
+        btn.classList.add('active');
+        if (data.img) {
+            frame.innerHTML = '<img src="' + data.img + '" alt="' + data.title + '" /><div class="screenshot-caption"><div class="screenshot-caption-title">' + data.title + '</div><div class="screenshot-caption-desc">' + data.desc + '</div></div>';
+        } else {
+            frame.innerHTML = '<div class="screenshot-placeholder"><span>📱</span>Add screenshot here</div><div class="screenshot-caption"><div class="screenshot-caption-title">' + data.title + '</div><div class="screenshot-caption-desc">' + data.desc + '</div></div>';
+        }
+    }
+    document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'IMG' && e.target.closest('.screenshot-frame')) {
+        document.getElementById('overlay-img').src = e.target.src;
+        document.getElementById('img-overlay').classList.add('active');
+    }
+});
+
+function closeOverlay() {
+    document.getElementById('img-overlay').classList.remove('active');
+}
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeOverlay();
+});
+</script>
+<div class="img-overlay" id="img-overlay" onclick="closeOverlay()">
+    <img id="overlay-img" src="" alt="" />
+</div>
+</body>
+</html>
