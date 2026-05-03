@@ -677,11 +677,17 @@ img, video {
     }
 
     .nav-links {
-        display: none;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .nav-links a {
+        font-size: 0.75rem;
     }
 
     .available-badge span:not(.badge-dot) {
-        display: none;
+        display: inline;
+        font-size: 0.65rem;
     }
 
     .card-title {
